@@ -16,4 +16,3 @@ workers ENV.fetch('WEB_CONCURRENCY', 0).to_i
 preload_app! if workers.positive?
 
 plugin :tmp_restart
-
