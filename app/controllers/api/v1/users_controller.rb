@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # UsersController: JSON API for listing and showing users
     class UsersController < BaseController
       before_action :set_user, only: [:show]
 
@@ -29,7 +30,12 @@ module Api
       end
 
       def user_json(user, include_details: false)
-        base_data = {
+        data = base_user_json(user)
+        include_details ? data.merge(user_details_json(user)) : data
+      end
+
+      def base_user_json(user)
+        {
           id: user.id,
           name: user.name,
           email: user.email,
@@ -37,15 +43,13 @@ module Api
           created_at: user.created_at,
           updated_at: user.updated_at
         }
+      end
 
-        if include_details
-          base_data.merge({
-            posts_count: user.posts.count,
-            recent_posts: user.recent_posts(3).map(&method(:post_json))
-          })
-        else
-          base_data
-        end
+      def user_details_json(user)
+        {
+          posts_count: user.posts.count,
+          recent_posts: user.recent_posts(3).map(&method(:post_json))
+        }
       end
 
       def post_json(post)

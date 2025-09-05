@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# UserService: User-related operations and orchestration
 class UserService
   class << self
     def create_with_welcome_post(user_params)
@@ -15,26 +16,21 @@ class UserService
 
     def bulk_update_status(user_ids, status)
       users = User.where(id: user_ids)
-      
-      return { success: false, message: "No users found" } if users.empty?
+      return { success: false, message: 'No users found' } if users.empty?
 
-      updated_count = users.update_all(status: status, updated_at: Time.current)
-      
-      {
-        success: true,
-        message: "Updated #{updated_count} users",
-        updated_count: updated_count
-      }
+      updated_count = update_users_status(users, status)
+
+      { success: true, message: "Updated #{updated_count} users", updated_count: updated_count }
     end
 
     def search_users(query, filters = {})
       scope = User.all
-      
+
       scope = scope.by_name(query) if query.present?
       scope = scope.adults if filters[:adults_only]
-      scope = scope.where("age >= ?", filters[:min_age]) if filters[:min_age]
-      scope = scope.where("age <= ?", filters[:max_age]) if filters[:max_age]
-      
+      scope = scope.where(age: (filters[:min_age])..) if filters[:min_age]
+      scope = scope.where(age: ..(filters[:max_age])) if filters[:max_age]
+
       scope.includes(:posts).order(:name)
     end
 
@@ -42,15 +38,25 @@ class UserService
 
     def create_welcome_post(user)
       user.posts.create!(
-        title: "Welcome to the platform!",
+        title: 'Welcome to the platform!',
         content: "Hi #{user.name}, welcome to our platform. We're excited to have you here!",
-        status: "published"
+        status: 'published'
       )
     end
 
     def send_welcome_email(user)
       # In a real app, this would queue an email job
       Rails.logger.info "Sending welcome email to #{user.email}"
+    end
+
+    def update_users_status(users, status)
+      updated_count = 0
+      User.transaction do
+        users.find_each do |user|
+          updated_count += 1 if user.update(status: status)
+        end
+      end
+      updated_count
     end
   end
 

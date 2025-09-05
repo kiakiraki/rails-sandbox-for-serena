@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# RubyLspSandbox: Library module providing configuration and environment helpers
 module RubyLspSandbox
-  VERSION = "1.0.0"
+  VERSION = '1.0.0'
 
   class Error < StandardError; end
   class ValidationError < Error; end
@@ -25,18 +26,19 @@ module RubyLspSandbox
     end
 
     def production?
-      environment == "production"
+      environment == 'production'
     end
 
     def development?
-      environment == "development"
+      environment == 'development'
     end
 
     def test?
-      environment == "test"
+      environment == 'test'
     end
   end
 
+  # Configuration: Settings for pagination and caching behavior
   class Configuration
     attr_accessor :default_per_page, :max_per_page, :cache_ttl
 

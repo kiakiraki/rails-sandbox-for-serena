@@ -2,29 +2,29 @@
 
 FactoryBot.define do
   factory :comment do
-    content { "This is a sample comment that provides feedback on the post." }
-    status { "approved" }
-    association :post
-    association :user
+    content { 'This is a sample comment that provides feedback on the post.' }
+    status { 'approved' }
+    post
+    user
 
     trait :pending do
-      status { "pending" }
+      status { 'pending' }
     end
 
     trait :approved do
-      status { "approved" }
+      status { 'approved' }
     end
 
     trait :rejected do
-      status { "rejected" }
+      status { 'rejected' }
     end
 
     trait :long_comment do
-      content { "This is a very detailed comment that goes into depth about the topic. " * 10 }
+      content { 'This is a very detailed comment that goes into depth about the topic. ' * 10 }
     end
 
     trait :short_comment do
-      content { "Short comment." }
+      content { 'Short comment.' }
     end
   end
 end

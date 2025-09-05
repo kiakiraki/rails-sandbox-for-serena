@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # BaseController: Common API concerns (format, error handling, pagination)
     class BaseController < ApplicationController
       skip_before_action :verify_authenticity_token
       before_action :set_default_format
@@ -17,14 +18,14 @@ module Api
 
       def record_not_found(exception)
         render json: {
-          error: "Record not found",
+          error: 'Record not found',
           message: exception.message
         }, status: :not_found
       end
 
       def parameter_missing(exception)
         render json: {
-          error: "Parameter missing",
+          error: 'Parameter missing',
           message: exception.message
         }, status: :bad_request
       end

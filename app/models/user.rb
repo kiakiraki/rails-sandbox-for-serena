@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User: Account with profile and authored content
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -8,8 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :age, presence: true, numericality: { greater_than: 0, less_than: 150 }
 
-  scope :adults, -> { where("age >= ?", 18) }
-  scope :by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
+  scope :adults, -> { where(age: 18..) }
+  scope :by_name, ->(name) { where('name LIKE ?', "%#{name}%") }
 
   def full_display_name
     "#{name} (#{email})"

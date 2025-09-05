@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 FactoryBot.define do
   factory :post do
     sequence(:title) { |n| "Sample Post Title #{n}" }
-    content { "This is the content of the post. " * rand(10..50) }
-    status { "published" }
-    association :user
+    content { 'This is the content of the post. ' * rand(10..50) }
+    status { 'published' }
+    user
 
     trait :draft do
-      status { "draft" }
+      status { 'draft' }
     end
 
     trait :published do
-      status { "published" }
+      status { 'published' }
     end
 
     trait :archived do
-      status { "archived" }
+      status { 'archived' }
     end
 
     trait :with_comments do
@@ -26,11 +28,12 @@ FactoryBot.define do
     end
 
     trait :long_content do
-      content { "This is a very long post content. " * 100 }
+      content { 'This is a very long post content. ' * 100 }
     end
 
     trait :short_content do
-      content { "Short post content." }
+      content { 'Short post content.' }
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
