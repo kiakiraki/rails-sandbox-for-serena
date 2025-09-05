@@ -15,4 +15,3 @@ class CreateComments < ActiveRecord::Migration[7.0]
     add_index :comments, :created_at
   end
 end
-

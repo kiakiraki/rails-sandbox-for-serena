@@ -14,3 +14,7 @@ RSpec:
     - 'spec/**/*'
 
 # Rails cops enabled via rubocop-rails. Add project-specific tweaks below if needed.
+
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/**/*'
