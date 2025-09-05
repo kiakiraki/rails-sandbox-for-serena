@@ -9,3 +9,6 @@ en:
       created: "User was successfully created."
       updated: "User was successfully updated."
       deleted: "User was successfully deleted."
+  pages:
+    notice:
+      contact_sent: "Message sent"

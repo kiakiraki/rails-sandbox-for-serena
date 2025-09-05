@@ -11,7 +11,6 @@ class PagesController < ApplicationController
   end
 
   def create_contact
-    redirect_to contact_path, notice: 'Message sent'
+    redirect_to contact_path, notice: t('pages.notice.contact_sent')
   end
 end
-
