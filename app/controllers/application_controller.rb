@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ApplicationController: Base web controller with auth and helpers
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 

@@ -1,0 +1,16 @@
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rspec_rails
+
+AllCops:
+  NewCops: enable
+
+# RSpec cops apply to files under spec/
+RSpec:
+  Include:
+    - 'spec/**/*'
+
+# Rails cops enabled via rubocop-rails. Add project-specific tweaks below if needed.

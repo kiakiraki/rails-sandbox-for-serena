@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:name) { |n| "User #{n}" }
     sequence(:email) { |n| "user#{n}@example.com" }
     age { rand(18..65) }
-    bio { "This is a sample bio for the user." }
+    bio { 'This is a sample bio for the user.' }
 
     trait :adult do
       age { rand(18..65) }

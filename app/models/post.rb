@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Post: Blog post authored by a user
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -8,14 +9,14 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10 }
   validates :status, inclusion: { in: %w[draft published archived] }
 
-  scope :published, -> { where(status: "published") }
+  scope :published, -> { where(status: 'published') }
   scope :by_user, ->(user) { where(user: user) }
   scope :recent, -> { order(created_at: :desc) }
 
-  enum status: { draft: 0, published: 1, archived: 2 }
+  enum :status, { draft: 0, published: 1, archived: 2 }
 
   def published?
-    status == "published"
+    status == 'published'
   end
 
   def word_count
