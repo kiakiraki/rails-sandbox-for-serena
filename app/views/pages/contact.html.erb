@@ -1,0 +1,19 @@
+<h1>Contact</h1>
+<%= form_with url: contact_path, method: :post do |form| %>
+  <div>
+    <%= form.label :name, '名前' %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :message, 'メッセージ' %>
+    <%= form.text_area :message %>
+  </div>
+  <%= form.submit '送信' %>
+<% end %>
+
+<ul>
+  <% @contact_methods.each do |method| %>
+    <li><%= method %></li>
+  <% end %>
+</ul>
+
