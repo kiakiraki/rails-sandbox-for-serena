@@ -123,3 +123,12 @@ crontab.txt
 *.tmp
 *.bak
 *.backup
+ 
+# Ignore Bundler install path
+/vendor/bundle/
+
+# Ignore RSpec status file
+.rspec_status
+
+# Ignore Sass cache (if generated)
+/.sass-cache/
