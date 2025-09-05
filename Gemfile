@@ -33,8 +33,8 @@ group :development, :test do
 end
 
 group :development, :production do
-  # Move puma out of default group to avoid loading in test (Rack 3 incompat w/ Puma 5)
-  gem 'puma', '~> 5.0'
+  # Puma 6+ for Rack 3 compatibility
+  gem 'puma', '~> 6.4'
 end
 
 group :development do
