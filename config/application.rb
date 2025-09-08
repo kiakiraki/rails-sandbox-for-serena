@@ -21,6 +21,10 @@ module RubyLspSandbox
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Rails 8.1のタイムゾーン変換挙動に先行対応
+    # https://guides.rubyonrails.org/configuring.html#config-active-support-to-time-preserves-timezone
+    config.active_support.to_time_preserves_timezone = :zone
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
