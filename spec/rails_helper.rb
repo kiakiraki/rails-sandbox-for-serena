@@ -13,9 +13,7 @@ load Rails.root.join('db/schema.rb')
 
 RSpec.configure do |config|
   # ActiveRecordやrspec-railsのバージョンにより未定義の場合があるためガード
-  if config.respond_to?(:fixture_path=)
-    config.fixture_path = Rails.root.join('spec/fixtures').to_s
-  end
+  config.fixture_path = Rails.root.join('spec/fixtures').to_s if config.respond_to?(:fixture_path=)
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
