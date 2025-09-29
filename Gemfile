@@ -6,7 +6,7 @@ ruby '3.2.2'
 
 # Core Rails gems
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.3'
 gem 'sqlite3', '~> 2.7'
 
 # Asset pipeline
