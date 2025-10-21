@@ -34,7 +34,7 @@ end
 
 group :development, :production do
   # Puma 6+ for Rack 3 compatibility
-  gem 'puma', '~> 7.0'
+  gem 'puma', '~> 7.1'
 end
 
 group :development do
