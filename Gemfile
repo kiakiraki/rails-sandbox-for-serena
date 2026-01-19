@@ -38,7 +38,7 @@ group :development, :production do
 end
 
 group :development do
-  gem 'listen', '~> 3.3'
+  gem 'listen', '~> 3.10'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
